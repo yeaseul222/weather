@@ -108,13 +108,55 @@ OPENWEATHER_API_KEY = "your_actual_api_key_here"
 3. 실시간 날씨 정보와 5일 예보를 확인합니다
 4. 다양한 차트와 그래프로 데이터를 시각화합니다
 
-## 🛠️ 기술 스택
+## � Streamlit Cloud 배포
+
+### 1. GitHub에 업로드
+1. GitHub에 새 리포지토리 생성
+2. 코드 업로드 (`.env` 파일은 자동으로 제외됨)
+
+### 2. Streamlit Cloud에서 배포
+1. [Streamlit Cloud](https://share.streamlit.io/)에 로그인
+2. "New app" 클릭
+3. GitHub 리포지토리 연결
+4. `app.py` 또는 `app_advanced.py` 선택
+5. **Secrets** 섹션에서 API 키 설정:
+   ```
+   OPENWEATHER_API_KEY = "your_actual_api_key_here"
+   ```
+6. Deploy 클릭
+
+### 3. 배포 완료!
+- 자동으로 생성된 URL에서 앱에 접속 가능
+- 코드 변경 시 자동으로 재배포
+
+### 🔧 배포 트러블슈팅
+
+**Python 버전 호환성 문제 해결:**
+- Streamlit Cloud는 Python 3.13을 사용합니다
+- `requirements.txt`에서 패키지 버전을 최신으로 유지하세요
+- 오류 발생 시 "Reboot app" 버튼으로 재시작해보세요
+
+**의존성 오류 해결:**
+```bash
+# 로컬에서 테스트
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+## ️ 기술 스택
 
 - **Frontend**: Streamlit
 - **Data Visualization**: Plotly
 - **Data Processing**: Pandas
 - **API**: OpenWeatherMap API
-- **Language**: Python
+- **Language**: Python 3.8+ (Python 3.13 호환)
+
+## ⚙️ 시스템 요구사항
+
+- **Python**: 3.8 이상 (Python 3.13 완전 호환)
+- **운영체제**: Windows, macOS, Linux
+- **메모리**: 최소 512MB RAM
+- **네트워크**: 인터넷 연결 (API 호출용)
 
 ## 📈 향후 개선 계획
 

@@ -1033,8 +1033,20 @@ def main():
         if input_method == "📍 현재 위치":
             st.markdown("#### 📍 현재 위치 자동 감지")
             
-            # 설명 박스
-            st.info("💡 IP 주소를 기반으로 현재 위치를 자동으로 찾아드립니다")
+            # 설명 박스 - 작은 크기와 연한 회색 배경
+            st.markdown("""
+            <div style='
+                background-color: #f5f5f5; 
+                padding: 0.8rem; 
+                border-radius: 6px; 
+                border: 1px solid #e0e0e0;
+                margin: 0.5rem 0;
+            '>
+                <small style='color: #666666; font-size: 0.85rem;'>
+                    💡 IP 주소를 기반으로 현재 위치를 자동으로 찾아드립니다
+                </small>
+            </div>
+            """, unsafe_allow_html=True)
             
             # 위치 찾기 버튼
             if st.button("🔍 현재 위치 찾기", type="primary", use_container_width=True):

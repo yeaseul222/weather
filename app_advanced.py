@@ -11,8 +11,32 @@ from dotenv import load_dotenv
 # 환경 변수 로드
 load_dotenv()
 
-# OpenWeather API 키 (환경 변수에서 가져오기)
-API_KEY = os.getenv('OPENWEATHER_API_KEY', '9253839a2da43730288c2791a882365b')
+# OpenWeather API 키 (보안 처리)
+# 환경 변수 또는 Streamlit secrets에서 가져오기
+try:
+    API_KEY = st.secrets["OPENWEATHER_API_KEY"]
+except:
+    API_KEY = os.getenv("OPENWEATHER_API_KEY", "your_api_key_here")
+
+# API 키 유효성 검사
+if API_KEY == "your_api_key_here" or not API_KEY:
+    st.error("⚠️ OpenWeather API 키가 설정되지 않았습니다!")
+    st.markdown("""
+    ### API 키 설정 방법:
+    1. [OpenWeatherMap](https://openweathermap.org/api)에서 무료 API 키를 발급받으세요
+    2. 다음 중 하나의 방법으로 API 키를 설정하세요:
+    
+    **방법 1**: `.env` 파일에 추가
+    ```
+    OPENWEATHER_API_KEY=your_actual_api_key
+    ```
+    
+    **방법 2**: `.streamlit/secrets.toml` 파일에 추가
+    ```
+    OPENWEATHER_API_KEY = "your_actual_api_key"
+    ```
+    """)
+    st.stop()
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
 FORECAST_URL = "http://api.openweathermap.org/data/2.5/forecast"
 
